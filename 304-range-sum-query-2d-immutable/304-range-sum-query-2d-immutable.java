@@ -1,19 +1,33 @@
 public class NumMatrix {
-    int[][] data;
+    int[][] prefixSum;
 
     public NumMatrix(int[][] matrix) {
-        data = matrix;
+        prefixSum = new int[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[0].length; j++){
+                if (j == 0){
+                    prefixSum[i][j] = matrix[i][j];
+                }
+                else{
+                    prefixSum[i][j] = prefixSum[i][j - 1] + matrix[i][j];
+                }
+            }
+        }
+
+
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
         int sum = 0;
-        
-        for(int i = row1; i <= row2; i++){
-            for(int j = col1; j <= col2; j++){
-                sum += data[i][j];
+
+        for (int i = row1; i <= row2; i++){
+            sum += prefixSum[i][col2];
+            if (col1 != 0){
+                sum -= prefixSum[i][col1 - 1];
             }
         }
-        
+
         return sum;
     }
 }
