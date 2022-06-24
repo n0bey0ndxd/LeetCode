@@ -14,26 +14,22 @@
  * }
  */
 class BSTIterator {
-
-    Stack<TreeNode> s = new Stack<>();
+    private Stack<TreeNode> s = new Stack<>();
 
     public BSTIterator(TreeNode root) {
         fillStack(root);
     }
 
     private void fillStack(TreeNode root){
-        s.add(root);
-        while(root.left != null){
-            s.add(root.left);
+        while(root != null){
+            s.add(root);
             root = root.left;
         }
     }
 
     public int next() {
         TreeNode node = s.pop();
-        if (node.right != null){
-            fillStack(node.right);
-        }
+        fillStack(node.right);
         
         return node.val;
     }
