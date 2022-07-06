@@ -9,8 +9,7 @@ public:
             int mid = (right + end) / 2;
             int n = mid - right;
 
-            if (abs(arr[left + n] - x) > abs(arr[mid] - x)
-                || arr[mid] < x) {
+            if (x - arr[left + n] > arr[mid] - x) {
                 left += n + 1;
                 right = mid + 1;
             }
