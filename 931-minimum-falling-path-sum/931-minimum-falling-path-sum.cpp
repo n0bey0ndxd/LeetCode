@@ -13,9 +13,9 @@ public:
         
         for (int r = 1; r < n; r++) {
             for (int c = 0; c < m; c++) {
-                dp[r][c] = dp[r][c] + minElm(dp[r - 1][c],
-                                    c != 0 ? dp[r - 1][c - 1] : dp[r - 1][c],
-                                    c + 1 != m ? dp[r - 1][c + 1] : dp[r - 1][c]);
+                dp[r][c] =  dp[r][c] + minElm(dp[r - 1][c],
+                            c != 0 ? dp[r - 1][c - 1] : dp[r - 1][c],
+                            c + 1 != m ? dp[r - 1][c + 1] : dp[r - 1][c]);
             }
         }
         
